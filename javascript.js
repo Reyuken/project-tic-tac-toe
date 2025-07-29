@@ -6,8 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
         "", "", "",
     ]
     let currentPlayer = "x";
-    let gameOver = false;
 
+    //Game is disabled at first
+    for (i = 0; i<9 ; i++){
+        document.getElementById(`btn${i}`).disabled = true;
+    }
+    //Start button enables the game
+    document.getElementById("startBtn").addEventListener("click",()=>{
+         for (i = 0; i<9 ; i++){
+        document.getElementById(`btn${i}`).disabled = false;
+        document.getElementById("startBtn").disabled = true;
+    }
+    });
+    
     //displays the board in console
     function displayBoard() {
         for (i = 0; i<9 ; i++){
@@ -31,18 +42,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     })
     //enables button interaction 
-for (let buttonID=0; buttonID<9 ;buttonID++){
-    document.getElementById(`btn${buttonID}`).addEventListener("click",()=>{
-        playTurn(buttonID);
-    });
+    for (let buttonID=0; buttonID<9 ;buttonID++){
+        document.getElementById(`btn${buttonID}`).addEventListener("click",()=>{
+            playTurn(buttonID);
+        });
 }
     //display result
-function displayResult(announceResult){
-    const result = document.getElementById("result");
-    const div = document.createElement("div");
-    result.append(div);
-    div.innerHTML = announceResult;
-}
+    function displayResult(announceResult){
+        const result = document.getElementById("result");
+        const div = document.createElement("div");
+        result.append(div);
+        div.innerHTML = announceResult;
+    }
     //places player move if position is empty
     function makeMove(position) {
         if (board[position] === "") {
@@ -93,26 +104,26 @@ function displayResult(announceResult){
         currentPlayer = currentPlayer === "x" ? "0" :"x";   //changes player from x to 0
         return currentPlayer;
     }
-const dialog = document.getElementById("dialogBox");
-const editName = document.getElementById("editName");
-const closeBtn = document.getElementById("closeBtn");
+    const dialog = document.getElementById("dialogBox");
+    const editName = document.getElementById("editName");
+    const closeBtn = document.getElementById("closeBtn");
 
-const form = document.getElementById("input");
+    const form = document.getElementById("input");
 
-editName.addEventListener("click",()=>{
-    dialog.showModal();
-})
-closeBtn.addEventListener("click",()=>{
-    dialog.close();
-})
-
-form.addEventListener("submit",function(e){
-    e.preventDefault();
-    const player1Input = document.getElementById("player1Input").value ;
-    const player2Input = document.getElementById("player2Input").value ;
-    document.getElementById("player1").innerHTML =  `Player 1: ${player1Input}` ;
-    document.getElementById("player2").innerHTML = `Player 2: ${player2Input}` ;
-    dialog.close();
-})
+    editName.addEventListener("click",()=>{
+        dialog.showModal();
+    })
+    closeBtn.addEventListener("click",()=>{
+        dialog.close();
+    })
+    //submit input player names
+    form.addEventListener("submit",function(e){
+        e.preventDefault();
+        const player1Input = document.getElementById("player1Input").value ;
+        const player2Input = document.getElementById("player2Input").value ;
+        document.getElementById("player1").innerHTML =  `Player 1: ${player1Input}` ;
+        document.getElementById("player2").innerHTML = `Player 2: ${player2Input}` ;
+        dialog.close();
+    })
 
 })
