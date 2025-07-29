@@ -14,9 +14,9 @@
         <h3>Input Details</h3>
         <form action="" id="input">
             <label for="player1Input">Player 1:</label>
-            <input type="text" id="player1Input">
+            <input type="text" id="player1Input" required>
             <label for="player2Input">Player 2:</label>
-            <input type="text" id="player2Input">
+            <input type="text" id="player2Input" required>
             <button type="button" id="closeBtn">Close</button>
             <button type="submit" id="submitBtn">Submit</button>
         </form>
@@ -24,9 +24,10 @@
     <button id="startBtn">Start</button>
     <button id="reset" >Reset</button>
     <div id="playerNames">
-        <div id="player1">Player 1:</div>
-        <div id="player2">Player 2:</div>
+        <div id="player1">Player X:</div>
+        <div id="player2">Player O:</div>
     </div>
+    <div id="result"></div>
     <div class="boardBtns">
         <button class="btn" id="btn0"></button>
         <button class="btn" id="btn1"></button>
@@ -38,7 +39,7 @@
         <button class="btn" id="btn7"></button>
         <button class="btn" id="btn8"></button>
     </div>
-    <div id="result"></div>
+
 
 </body>
 </html>

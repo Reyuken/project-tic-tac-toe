@@ -1,11 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
+
+    const dialog = document.getElementById("dialogBox");
+    const editName = document.getElementById("editName");
+    const closeBtn = document.getElementById("closeBtn");
+    const form = document.getElementById("input");
+
+    editName.addEventListener("click",()=>{
+        dialog.showModal();
+    })
+    closeBtn.addEventListener("click",()=>{
+        dialog.close();
+    })
+    //submit input player names
+    form.addEventListener("submit",function(e){
+        e.preventDefault();
+        const player1Input = document.getElementById("player1Input").value ;
+        const player2Input = document.getElementById("player2Input").value ;
+        document.getElementById("player1").innerHTML =  `Player X: ${player1Input}`;
+        document.getElementById("player2").innerHTML = `Player O: ${player2Input}`;
+        dialog.close();
+    })
+
     let board = [
         "", "", "",
         "", "", "",
         "", "", "",
     ]
     let currentPlayer = "x";
+
+
+
 
     //Game is disabled at first
     for (i = 0; i<9 ; i++){
@@ -83,14 +109,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return board.every(cell => cell !=="" && !checkWinner());
 
     }
-
+    //check change the mark to player name
+    function changeName(){
+        const player1Input = document.getElementById("player1Input").value ;
+        const player2Input = document.getElementById("player2Input").value ;
+        const playerMark = checkWinner();
+        if (playerMark === "x"){
+            return `${player1Input} X` ;
+        }
+        else {
+            return `${player2Input} O` ;
+        }
+    }
     //player turn
     function playTurn(position) {
         if (!makeMove(position)) return;    //if move is invalid, do nothing
         displayBoard();                     //display the move in console
         const winner = checkWinner();       //runs checkWinner function
-        if (winner){                        //if there is a winning pattern,
-            displayResult(`${winner} wins!`); // congratulate
+        if (winner){ 
+            const winName = changeName();                       //if there is a winning pattern,
+            displayResult(`${winName} wins!`); // congratulate
             stopGame();                //game ends
             return;
         }
@@ -104,26 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPlayer = currentPlayer === "x" ? "0" :"x";   //changes player from x to 0
         return currentPlayer;
     }
-    const dialog = document.getElementById("dialogBox");
-    const editName = document.getElementById("editName");
-    const closeBtn = document.getElementById("closeBtn");
 
-    const form = document.getElementById("input");
-
-    editName.addEventListener("click",()=>{
-        dialog.showModal();
-    })
-    closeBtn.addEventListener("click",()=>{
-        dialog.close();
-    })
-    //submit input player names
-    form.addEventListener("submit",function(e){
-        e.preventDefault();
-        const player1Input = document.getElementById("player1Input").value ;
-        const player2Input = document.getElementById("player2Input").value ;
-        document.getElementById("player1").innerHTML =  `Player 1: ${player1Input}` ;
-        document.getElementById("player2").innerHTML = `Player 2: ${player2Input}` ;
-        dialog.close();
-    })
 
 })
