@@ -9,7 +9,23 @@
 </head>
 <body>
     <h1>Tic-Tac-Toe</h5>
+    <button id="editName">Edit Name</button>
+    <dialog id="dialogBox">
+        <h3>Input Details</h3>
+        <form action="" id="input">
+            <label for="player1Input">Player 1:</label>
+            <input type="text" id="player1Input">
+            <label for="player2Input">Player 2:</label>
+            <input type="text" id="player2Input">
+            <button type="button" id="closeBtn">Close</button>
+            <button type="submit" id="submitBtn">Submit</button>
+        </form>
+    </dialog>
     <button id="reset" >Reset</button>
+        <div id="playerNames">
+        <div id="player1">Player 1:</div>
+        <div id="player2">Player 2:</div>
+    </div>
     <div class="boardBtns">
         <button class="btn" id="btn0"></button>
         <button class="btn" id="btn1"></button>
@@ -21,6 +37,7 @@
         <button class="btn" id="btn7"></button>
         <button class="btn" id="btn8"></button>
     </div>
+    <div id="result"></div>
 
 </body>
 </html>
