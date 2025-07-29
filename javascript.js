@@ -14,6 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById(`btn${i}`).innerHTML = board[i];
         }
     }
+    //disable buttons
+    function stopGame() {
+        for (i = 0; i<9 ; i++){
+            document.getElementById(`btn${i}`).disabled = true;
+        }
+    }
+    //reset game
+    document.getElementById("reset").addEventListener("click",()=>{
+        for (i = 0; i<9 ; i++){
+            board[i] = "";
+            document.getElementById(`btn${i}`).innerHTML = board[i];
+            document.getElementById(`btn${i}`).disabled = false;
+        }
+        console.log("reset");
+        return;
+    }
+        
+    )
 
     //places player move if position is empty
     function makeMove(position) {
@@ -52,15 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const winner = checkWinner();       //runs checkWinner function
         if (winner){                        //if there is a winning pattern,
             console.log(`${winner} wins!`); // congratulate
-            gameOver = true;                //game ends
+            stopGame();                //game ends
             return;
         }
 
         if (checkTie()){                    //if tie
             console.log("its a tie");       //display tie
-            gameOver = true;                //game ends
+            stopGame();                //game ends
             return;
         }
+
         currentPlayer = currentPlayer === "x" ? "0" :"x";   //changes player from x to 0
         return currentPlayer;
     }
