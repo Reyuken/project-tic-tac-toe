@@ -39,7 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     //Start button enables the game
     document.getElementById("startBtn").addEventListener("click",()=>{
-         for (i = 0; i<9 ; i++){
+        const player1Input = document.getElementById("player1Input").value ;
+        const player2Input = document.getElementById("player2Input").value ;
+        if (player1Input == "" || player2Input =="")return;
+        for (i = 0; i<9 ; i++){
         document.getElementById(`btn${i}`).disabled = false;
         document.getElementById("startBtn").disabled = true;
     }
