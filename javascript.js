@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //displays the board in console
     function displayBoard() {
-        console.log(board[0], board[1], board[2],)
-        console.log(board[3], board[4], board[5],)
-        console.log(board[6], board[7], board[8],)
+        for (i = 0; i<9 ; i++){
+            document.getElementById(`btn${i}`).innerHTML = board[i];
+        }
     }
 
     //places player move if position is empty
@@ -62,15 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         currentPlayer = currentPlayer === "x" ? "0" :"x";   //changes player from x to 0
-
+        return currentPlayer;
     }
 
+    //enables button interaction 
+for (let buttonID=0; buttonID<9 ;buttonID++){
+    document.getElementById(`btn${buttonID}`).addEventListener("click",()=>{
+        playTurn(buttonID);
+    });
+}
 
-playTurn(0); // X
-playTurn(1); // O
-playTurn(4); // X
-playTurn(2); // O
-playTurn(8); // X wins!
 
 
 })
